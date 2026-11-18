@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kicks_sneaker_ui/constants/string_const.dart';
-import 'package:kicks_sneaker_ui/presentation/screens/home_screen.dart';
 import 'package:kicks_sneaker_ui/routing/router.dart';
 
 void main() {
@@ -16,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: StringConst.appTitle,
       theme: ThemeData(
-        brightness: .light
+        brightness: .light,
+        fontFamily: StringConst.appFontFamily
       ),
       routerConfig: router,
       builder: (ctx, child)=> child!,
