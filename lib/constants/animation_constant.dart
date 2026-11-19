@@ -10,6 +10,9 @@ class AnimationConstant {
   static const staggerMaxStart = 0.45;
   static const entranceSlideOffset = 12.0;
   static const gridSlideOffset = 10.0;
+  static const pressScale = 0.96;
+  static const favoritePopScale = 1.22;
+  static const imageSwitchScale = 0.96;
 
   static const Curve microCurve = Curves.easeOut;
   static const Curve selectionCurve = Curves.easeInOut;

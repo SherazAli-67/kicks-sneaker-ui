@@ -12,11 +12,13 @@ class ProductDetailsProvider extends ChangeNotifier {
   String get selectedImage => product.images[selectedImageIndex];
 
   void selectSize(int index) {
+    if (selectedSizeIndex == index) return;
     selectedSizeIndex = index;
     notifyListeners();
   }
 
   void selectImage(int index) {
+    if (selectedImageIndex == index) return;
     selectedImageIndex = index;
     notifyListeners();
   }
