@@ -24,20 +24,24 @@ class ProductCard extends StatelessWidget {
           AspectRatio(
             aspectRatio: NumberConstant.productImageAspectRatio,
             child: DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.neutral200, borderRadius: .circular(NumberConstant.cardBorderRadius),),
+              //neutral200,
+              decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.cardBorderRadius),),
               child: Stack(
                 children: [
-                  Positioned.fill(child: Padding(padding: .all(NumberConstant.smallGap), child: Image.asset(product.image, fit: .contain,),),),
+                  //Image.asset(product.image, fit: .contain,),
+                  Positioned.fill(child: Padding(padding: .all(NumberConstant.smallGap), child: const SizedBox()),),
                   Positioned(
                     top: NumberConstant.smallGap,
                     right: NumberConstant.smallGap,
                     child: GestureDetector(
                       onTap: onFavoriteTap,
                       child: DecoratedBox(
-                        decoration: BoxDecoration(color: AppColors.neutral200, borderRadius: .circular(NumberConstant.chipBorderRadius),),
+                        //neutral200
+                        decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.chipBorderRadius),),
                         child: Padding(
                           padding: .all(NumberConstant.favoriteButtonPadding),
-                          child: SvgPicture.asset(AssetRes.icFavoriteOutlined, colorFilter: .mode(product.isFavorite ? AppColors.errorColor : AppColors.neutral1000, .srcIn),),
+                          //icFavoriteOutlined, .mode(product.isFavorite ? AppColors.errorColor : AppColors.neutral1000, .srcIn),
+                          child: const SizedBox()
                         ),
                       ),
                     ),
@@ -50,8 +54,8 @@ class ProductCard extends StatelessWidget {
             spacing: NumberConstant.tinyGap,
             crossAxisAlignment: .start,
             children: [
-              Text(product.name, style: AppTextStyles.productName, maxLines: 1, overflow: .ellipsis,),
-              Text('\$${product.price.toStringAsFixed(2)}', style: AppTextStyles.productPrice,),
+              //product.name, productName,
+              //\$${product.price.toStringAsFixed(2)}, productPrice
             ],
           ),
         ],

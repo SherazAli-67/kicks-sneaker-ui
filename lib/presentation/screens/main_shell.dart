@@ -29,7 +29,7 @@ class MainShell extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: .spaceEvenly,
                 children: [
-                  _buildNavItem(index: 0, icon: AssetRes.icHome, selectedColor: AppColors.primaryColor,),
+                  _buildNavItem(index: 0, icon: AssetRes.icHome, ),
                   _buildNavItem(index: 1, icon: AssetRes.icSearch),
                   _buildNavItem(index: 2, icon: AssetRes.icCart),
                   _buildNavItem(index: 3, icon: AssetRes.icProfile),
@@ -42,7 +42,7 @@ class MainShell extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem({required int index, required String icon, Color selectedColor = AppColors.neutral600,}) {
+  Widget _buildNavItem({required int index, required String icon,}) {
     final isSelected = navigationShell.currentIndex == index;
     return GestureDetector(
       onTap: () => navigationShell.goBranch(index, initialLocation: index == navigationShell.currentIndex,),
@@ -50,7 +50,7 @@ class MainShell extends StatelessWidget {
         decoration: BoxDecoration(color: isSelected ? AppColors.primaryOp08 : AppColors.whiteColor, borderRadius: .circular(NumberConstant.chipBorderRadius),),
         child: Padding(
           padding: .all(NumberConstant.bottomNavItemPadding),
-          child: SvgPicture.asset(icon, colorFilter: .mode(isSelected ? selectedColor : AppColors.neutral600, .srcIn),),
+          child: SvgPicture.asset(icon,),
         ),
       ),
     );

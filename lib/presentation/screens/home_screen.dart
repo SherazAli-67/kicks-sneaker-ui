@@ -48,8 +48,7 @@ class HomeScreen extends StatelessWidget {
                         mainAxisSpacing: NumberConstant.productGridGap,
                         childAspectRatio: NumberConstant.productCardAspectRatio,
                       ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
+                      delegate: SliverChildBuilderDelegate((context, index) {
                           final product = provider.filteredProducts[index];
                           return ProductCard(product: product, onTap: () => context.push(NamedRoutes.productPath(product.id)),);
                         },
@@ -77,15 +76,16 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: .circular(NumberConstant.profileImageBorderRadius),
                 child: ColoredBox(
                   color: AppColors.neutral200,
-                  child: Image.asset(AssetRes.profilePic, width: NumberConstant.profileImageSize, height: NumberConstant.profileImageSize, fit: .cover,),
+                  //profilePic, widthHeight: profileImageSize, fit.cover
+                  child: const SizedBox()
                 ),
               ),
               Column(
                 spacing: NumberConstant.tinyGap / 2,
                 crossAxisAlignment: .start,
                 children: [
-                  Text('${StringConst.helloPrefix}${StringConst.userName}', style: AppTextStyles.hello,),
-                  Text(StringConst.goodMorning, style: AppTextStyles.greeting,),
+                  //${StringConst.helloPrefix}${StringConst.userName}, hello
+                  //goodMorning, greeting
                 ],
               ),
             ],
@@ -94,8 +94,8 @@ class HomeScreen extends StatelessWidget {
         Row(
           spacing: NumberConstant.headerActionsGap,
           children: [
-            AppIconButton(icon: AssetRes.icNotification,),
-            AppIconButton(icon: AssetRes.icCart, onTap: () => context.go(NamedRoutes.cart.routeName),),
+            //AppIconButton: icNotification,
+            //AppIconButton: icCart,
           ],
         ),
       ],
@@ -108,24 +108,27 @@ class HomeScreen extends StatelessWidget {
       children: [
         Expanded(
           child: DecoratedBox(
-            decoration: BoxDecoration(color: AppColors.neutral100, borderRadius: .circular(NumberConstant.searchBorderRadius),),
+            //color: neutral100, searchBorderRadius
+            decoration: BoxDecoration(color: Colors.transparent),
             child: Padding(
               padding: .symmetric(horizontal: NumberConstant.searchHorizontalPadding, vertical: NumberConstant.searchVerticalPadding,),
               child: Row(
                 spacing: NumberConstant.smallGap,
                 children: [
-                  SvgPicture.asset(AssetRes.icSearch, colorFilter: .mode(AppColors.neutral600, .srcIn),),
-                  Text(StringConst.searchHint, style: AppTextStyles.searchHint,),
+                  //icSearch
+                  //searchHint, searchHint
                 ],
               ),
             ),
           ),
         ),
         DecoratedBox(
-          decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: .circular(NumberConstant.searchBorderRadius),),
+          //primaryColor
+          decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.searchBorderRadius),),
           child: Padding(
             padding: .all(NumberConstant.filterButtonPadding),
-            child: SvgPicture.asset(AssetRes.icFilter, colorFilter: .mode(AppColors.whiteColor, .srcIn),),
+            //icFilter
+            child: const SizedBox(),
           ),
         ),
       ],
@@ -137,20 +140,23 @@ class HomeScreen extends StatelessWidget {
       spacing: NumberConstant.categoriesTitleGap,
       crossAxisAlignment: .start,
       children: [
-        Text(StringConst.categories, style: AppTextStyles.sectionTitle,),
+        //categories, sectionTitle
         SingleChildScrollView(
           scrollDirection: .horizontal,
           child: Row(
             spacing: NumberConstant.categoryChipGap,
             children: List.generate(AppData.categories.length, (index) {
               final isSelected = provider.selectedCategoryIndex == index;
+
               return GestureDetector(
                 onTap: () => provider.selectCategory(index),
                 child: DecoratedBox(
-                  decoration: BoxDecoration(color: isSelected ? AppColors.primaryColor : AppColors.neutral200, borderRadius: .circular(NumberConstant.chipBorderRadius),),
+                  // isSelected ? AppColors.primaryColor : AppColors.neutral200
+                  decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.chipBorderRadius),),
                   child: Padding(
                     padding: .symmetric(horizontal: NumberConstant.categoryChipHorizontalPadding, vertical: NumberConstant.categoryChipVerticalPadding,),
-                    child: Text(AppData.categories[index], style: isSelected ? AppTextStyles.categoryChipSelected : AppTextStyles.categoryChip,),
+                    //AppData.categories[index]
+                    child: Text('', style: isSelected ? AppTextStyles.categoryChipSelected : AppTextStyles.categoryChip,),
                   ),
                 ),
               );
@@ -163,7 +169,8 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildBanner() {
     return DecoratedBox(
-      decoration: BoxDecoration(color: AppColors.neutral100, borderRadius: .circular(NumberConstant.buttonBorderRadius),),
+      //neutral100
+      decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.buttonBorderRadius),),
       child: Padding(
         padding: .symmetric(horizontal: NumberConstant.contentGap, vertical: NumberConstant.smallGap,),
         child: Row(
@@ -178,25 +185,29 @@ class HomeScreen extends StatelessWidget {
                     spacing: NumberConstant.tinyGap,
                     crossAxisAlignment: .start,
                     children: [
-                      Text(StringConst.newCollection, style: AppTextStyles.bannerTitle,),
-                      Text(StringConst.discountBanner, style: AppTextStyles.bannerSubtitle,),
+                      //newCollection, bannerTitle,
+                      //discountBanner, bannerSubtitle
                     ],
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
-                      color: AppColors.neutral100,
+                      //neutral100
+                      color: Colors.transparent,
                       borderRadius: .circular(NumberConstant.chipBorderRadius),
-                      border: .all(color: AppColors.neutral400),
+                      //neutral400
+                      border: .all(color: Colors.transparent),
                     ),
                     child: Padding(
                       padding: .symmetric(horizontal: NumberConstant.shopNowHorizontalPadding, vertical: NumberConstant.shopNowVerticalPadding,),
-                      child: Text(StringConst.shopNow, style: AppTextStyles.shopNow,),
+                      //shopNow, shopNow
+                      child: const SizedBox()
                     ),
                   ),
                 ],
               ),
             ),
-            Expanded(child: AspectRatio(aspectRatio: 1, child: Image.asset(AssetRes.newCollectionImg, fit: .contain,),),),
+            //newCollectionImg, fit.contain
+            Expanded(child: AspectRatio(aspectRatio: 1, child: const SizedBox()),),
           ],
         ),
       ),
