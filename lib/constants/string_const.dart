@@ -22,4 +22,8 @@ class StringConst {
   static const addToCart = 'Add to cart';
   static const productDescription =
       'Lorem ipsum dolor sit amet consectetur. Ornare massa odio mauris aliquet lectus tincidunt viverra. Justo cursus fringilla quam quisque pretium. Amet quis nulla viverra aliquam. ';
+  static const searchTitle = 'Search';
+  static const cartTitle = 'Cart';
+  static const profileTitle = 'Profile';
+  static const comingSoon = 'Coming soon';
 }

@@ -15,6 +15,7 @@ class AssetRes {
   static const swatch4 = '${_imagesPath}swatch_4.png';
   static const swatch6 = '${_imagesPath}swatch_6.png';
 
+  static const icBack = '${_iconsPath}ic_back.svg';
   static const icCart = '${_iconsPath}ic_cart.svg';
   static const icFavoriteOutlined = '${_iconsPath}ic_favorite_outlined.svg';
   static const icFilter = '${_iconsPath}ic_filter.svg';

@@ -1,16 +1,39 @@
 import 'package:go_router/go_router.dart';
+import 'package:kicks_sneaker_ui/presentation/screens/cart_screen.dart';
 import 'package:kicks_sneaker_ui/presentation/screens/home_screen.dart';
+import 'package:kicks_sneaker_ui/presentation/screens/main_shell.dart';
+import 'package:kicks_sneaker_ui/presentation/screens/product_details_screen.dart';
+import 'package:kicks_sneaker_ui/presentation/screens/profile_screen.dart';
+import 'package:kicks_sneaker_ui/presentation/screens/search_screen.dart';
 
 GoRouter router = GoRouter(
-    initialLocation: NamedRoutes.home.routeName,
-    routes: [
-      GoRoute(path: NamedRoutes.home.routeName, builder: (ctx, child)=> HomeScreen())
-    ]
+  initialLocation: NamedRoutes.home.routeName,
+  routes: [
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) => MainShell(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(routes: [GoRoute(path: NamedRoutes.home.routeName, builder: (context, state) => const HomeScreen(),),],),
+        StatefulShellBranch(routes: [GoRoute(path: NamedRoutes.search.routeName, builder: (context, state) => const SearchScreen(),),],),
+        StatefulShellBranch(routes: [GoRoute(path: NamedRoutes.cart.routeName, builder: (context, state) => const CartScreen(),),],),
+        StatefulShellBranch(routes: [GoRoute(path: NamedRoutes.profile.routeName, builder: (context, state) => const ProfileScreen(),),],),
+      ],
+    ),
+    GoRoute(
+      path: NamedRoutes.productDetails.routeName,
+      builder: (context, state) => ProductDetailsScreen(productId: state.pathParameters['id']!,),
+    ),
+  ],
 );
 
 enum NamedRoutes {
-  home('/home');
+  home('/home'),
+  search('/search'),
+  cart('/cart'),
+  profile('/profile'),
+  productDetails('/product/:id');
 
   final String routeName;
   const NamedRoutes(this.routeName);
+
+  static String productPath(String id) => '/product/$id';
 }
