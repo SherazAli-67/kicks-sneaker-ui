@@ -41,9 +41,16 @@ class NumberConstant {
   static const sizeChipGap = 12.0;
   static const sizeChipPadding = 8.0;
   static const detailsHeroAspectRatio = 353 / 332;
+  static const detailsHeroBorderRadius = 24.0;
   static const detailsSectionGap = 24.0;
+  static const detailsInfoGap = 16.0;
+  static const detailsLabelGap = 8.0;
   static const addToCartVerticalPadding = 17.0;
   static const profileImageSize = 40.0;
   static const colorSwatchSize = 40.0;
   static const colorSwatchGap = 8.0;
+  static const colorSwatchBorderRadius = 6.0;
+  static const swatchStripVerticalPadding = 4.0;
+  static const sizeChipHorizontalPadding = 10.0;
+  static const sizeChipVerticalPadding = 8.0;
 }

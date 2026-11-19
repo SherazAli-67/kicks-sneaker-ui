@@ -101,16 +101,16 @@ class AppTextStyles {
     fontSize: 16,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const detailsProductName = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w700,
+    fontWeight: .w600,
     fontSize: 14,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const detailsCategory = TextStyle(
@@ -118,16 +118,16 @@ class AppTextStyles {
     fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.neutral700,
+    color: AppColors.neutral600,
   );
 
   static const detailsPrice = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w700,
+    fontWeight: .w600,
     fontSize: 16,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const sizeLabel = TextStyle(
@@ -135,12 +135,12 @@ class AppTextStyles {
     fontWeight: .w600,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const sizeChip = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w600,
+    fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
     color: AppColors.neutral800,
@@ -148,7 +148,7 @@ class AppTextStyles {
 
   static const sizeChipSelected = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w600,
+    fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
     color: AppColors.whiteColor,
@@ -159,7 +159,7 @@ class AppTextStyles {
     fontWeight: .w600,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const descriptionBody = TextStyle(
@@ -172,15 +172,16 @@ class AppTextStyles {
 
   static const learnMore = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w600,
+    fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.primaryColor,
+    color: AppColors.neutral900,
+    decoration: TextDecoration.underline,
   );
 
   static const addToCart = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w700,
+    fontWeight: .w600,
     fontSize: 16,
     height: 1.4,
     letterSpacing: 0.2,
