@@ -5,10 +5,10 @@ import 'package:kicks_sneaker_ui/core/app_colors.dart';
 class AppTextStyles {
   static const hello = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w500,
+    fontWeight: .w600,
     fontSize: 10,
     letterSpacing: 0.2,
-    color: AppColors.neutral700,
+    color: AppColors.neutral600,
   );
 
   static const greeting = TextStyle(
@@ -17,7 +17,7 @@ class AppTextStyles {
     fontSize: 14,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const searchHint = TextStyle(
@@ -30,19 +30,19 @@ class AppTextStyles {
 
   static const sectionTitle = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w700,
+    fontWeight: .w600,
     fontSize: 14,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const categoryChip = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w600,
+    fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.neutral800,
+    color: AppColors.neutral600,
   );
 
   static const categoryChipSelected = TextStyle(
@@ -59,7 +59,7 @@ class AppTextStyles {
     fontSize: 18,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.whiteColor,
+    color: AppColors.neutral900,
   );
 
   static const bannerSubtitle = TextStyle(
@@ -67,7 +67,7 @@ class AppTextStyles {
     fontWeight: .w500,
     fontSize: 12,
     letterSpacing: 0.2,
-    color: AppColors.whiteColor,
+    color: AppColors.neutral600,
   );
 
   static const shopNow = TextStyle(
@@ -75,15 +75,15 @@ class AppTextStyles {
     fontWeight: .w600,
     fontSize: 10,
     letterSpacing: 0.2,
-    color: AppColors.primaryColor,
+    color: AppColors.neutral900,
   );
 
   static const productName = TextStyle(
     fontFamily: StringConst.appFontFamily,
-    fontWeight: .w600,
+    fontWeight: .w500,
     fontSize: 10,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral600,
   );
 
   static const productPrice = TextStyle(
@@ -92,7 +92,7 @@ class AppTextStyles {
     fontSize: 14,
     height: 1.4,
     letterSpacing: 0.2,
-    color: AppColors.neutral1000,
+    color: AppColors.neutral900,
   );
 
   static const appBarTitle = TextStyle(

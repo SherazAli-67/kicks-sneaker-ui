@@ -19,13 +19,17 @@ class MainShell extends StatelessWidget {
         child: Padding(
           padding: .only(left: NumberConstant.horizontalPadding * 2, right: NumberConstant.horizontalPadding * 2, bottom: NumberConstant.bottomContentPadding,),
           child: DecoratedBox(
-            decoration: BoxDecoration(color: AppColors.neutral1000, borderRadius: .circular(NumberConstant.bottomNavBorderRadius),),
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: .circular(NumberConstant.buttonBorderRadius),
+              border: .all(color: AppColors.neutral200),
+            ),
             child: Padding(
-              padding: .symmetric(horizontal: NumberConstant.bottomNavHorizontalPadding, vertical: NumberConstant.bottomNavVerticalPadding,),
+              padding: .all(NumberConstant.bottomNavVerticalPadding),
               child: Row(
-                mainAxisAlignment: .spaceBetween,
+                mainAxisAlignment: .spaceEvenly,
                 children: [
-                  _buildNavItem(index: 0, icon: AssetRes.icHome),
+                  _buildNavItem(index: 0, icon: AssetRes.icHome, selectedColor: AppColors.primaryColor,),
                   _buildNavItem(index: 1, icon: AssetRes.icSearch),
                   _buildNavItem(index: 2, icon: AssetRes.icCart),
                   _buildNavItem(index: 3, icon: AssetRes.icProfile),
@@ -38,15 +42,15 @@ class MainShell extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem({required int index, required String icon}) {
+  Widget _buildNavItem({required int index, required String icon, Color selectedColor = AppColors.neutral600,}) {
     final isSelected = navigationShell.currentIndex == index;
     return GestureDetector(
       onTap: () => navigationShell.goBranch(index, initialLocation: index == navigationShell.currentIndex,),
       child: DecoratedBox(
-        decoration: BoxDecoration(color: isSelected ? AppColors.primaryColor : AppColors.neutral1000, shape: .circle,),
+        decoration: BoxDecoration(color: isSelected ? AppColors.primaryOp08 : AppColors.whiteColor, borderRadius: .circular(NumberConstant.chipBorderRadius),),
         child: Padding(
           padding: .all(NumberConstant.bottomNavItemPadding),
-          child: SvgPicture.asset(icon, colorFilter: .mode(AppColors.whiteColor, .srcIn),),
+          child: SvgPicture.asset(icon, colorFilter: .mode(isSelected ? selectedColor : AppColors.neutral600, .srcIn),),
         ),
       ),
     );

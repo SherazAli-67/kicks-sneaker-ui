@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: onFavoriteTap,
                       child: DecoratedBox(
-                        decoration: BoxDecoration(color: AppColors.whiteColor, shape: .circle,),
+                        decoration: BoxDecoration(color: AppColors.neutral200, borderRadius: .circular(NumberConstant.chipBorderRadius),),
                         child: Padding(
                           padding: .all(NumberConstant.favoriteButtonPadding),
                           child: SvgPicture.asset(AssetRes.icFavoriteOutlined, colorFilter: .mode(product.isFavorite ? AppColors.errorColor : AppColors.neutral1000, .srcIn),),

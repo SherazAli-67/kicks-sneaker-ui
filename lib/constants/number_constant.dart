@@ -29,9 +29,15 @@ class NumberConstant {
   static const bottomNavItemPadding = 12.0;
   static const bottomNavBorderRadius = 32.0;
   static const cardBorderRadius = 16.0;
-  static const chipBorderRadius = 20.0;
+  static const chipBorderRadius = 8.0;
   static const buttonBorderRadius = 16.0;
   static const searchBorderRadius = 12.0;
+  static const iconButtonBorderRadius = 12.0;
+  static const profileImageBorderRadius = 12.0;
+  static const bottomNavClearance = 100.0;
+  static const headerProfileGap = 12.0;
+  static const categoriesTitleGap = 20.0;
+  static const notificationDotPadding = 4.0;
   static const sizeChipGap = 12.0;
   static const sizeChipPadding = 8.0;
   static const detailsHeroAspectRatio = 353 / 332;

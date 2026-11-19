@@ -14,7 +14,7 @@ class AppIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     this.onTap,
-    this.backgroundColor = AppColors.neutral200,
+    this.backgroundColor = AppColors.neutral100,
     this.iconColor = AppColors.neutral1000,
     this.padding = NumberConstant.iconButtonPadding,
   });
@@ -24,7 +24,7 @@ class AppIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: DecoratedBox(
-        decoration: BoxDecoration(color: backgroundColor, shape: .circle,),
+        decoration: BoxDecoration(color: backgroundColor, borderRadius: .circular(NumberConstant.iconButtonBorderRadius),),
         child: Padding(
           padding: .all(padding),
           child: SvgPicture.asset(icon, colorFilter: .mode(iconColor, .srcIn),),
