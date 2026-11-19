@@ -87,7 +87,18 @@ class ProductDetailsScreen extends StatelessWidget {
               borderRadius: .circular(NumberConstant.detailsHeroBorderRadius),
               child: Stack(
                 children: [
-                  Positioned.fill(child: Padding(padding: .all(NumberConstant.contentGap), child: Image.asset(provider.selectedImage, fit: .contain,),),),
+                  Positioned.fill(
+                    child: Padding(
+                      padding: .all(NumberConstant.contentGap),
+                      child: Hero(
+                        tag: 'product-image-${provider.product.id}',
+                        child: Material(
+                          type: .transparency,
+                          child: Image.asset(provider.selectedImage, fit: .contain),
+                        ),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     top: NumberConstant.smallGap + NumberConstant.tinyGap,
                     right: NumberConstant.smallGap + NumberConstant.tinyGap,

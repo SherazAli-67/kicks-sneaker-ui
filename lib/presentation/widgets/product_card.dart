@@ -25,11 +25,22 @@ class ProductCard extends StatelessWidget {
             aspectRatio: NumberConstant.productImageAspectRatio,
             child: DecoratedBox(
               //neutral200,
-              decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.cardBorderRadius),),
+              decoration: BoxDecoration(color: AppColors.neutral200, borderRadius: .circular(NumberConstant.cardBorderRadius),),
               child: Stack(
                 children: [
-                  //Image.asset(product.image, fit: .contain,),
-                  Positioned.fill(child: Padding(padding: .all(NumberConstant.smallGap), child: const SizedBox()),),
+                  //
+                  Positioned.fill(
+                    child: Padding(
+                      padding: .all(NumberConstant.smallGap),
+                      child: Hero(
+                        tag: 'product-image-${product.id}',
+                        child: Material(
+                          type: .transparency,
+                          child: Image.asset(product.image, fit: .contain),
+                        ),
+                      ),
+                    ),
+                  ),
                   Positioned(
                     top: NumberConstant.smallGap,
                     right: NumberConstant.smallGap,
@@ -37,11 +48,11 @@ class ProductCard extends StatelessWidget {
                       onTap: onFavoriteTap,
                       child: DecoratedBox(
                         //neutral200
-                        decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.chipBorderRadius),),
+                        decoration: BoxDecoration(color:AppColors.neutral200, borderRadius: .circular(NumberConstant.chipBorderRadius),),
                         child: Padding(
-                          padding: .all(NumberConstant.favoriteButtonPadding),
-                          //icFavoriteOutlined, .mode(product.isFavorite ? AppColors.errorColor : AppColors.neutral1000, .srcIn),
-                          child: const SizedBox()
+                            padding: .all(NumberConstant.favoriteButtonPadding),
+                            //icFavoriteOutlined,
+                            child:SvgPicture.asset(AssetRes.icFavoriteOutlined, colorFilter: .mode(product.isFavorite ? AppColors.errorColor : AppColors.neutral1000, .srcIn),)
                         ),
                       ),
                     ),
@@ -55,7 +66,9 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: .start,
             children: [
               //product.name, productName,
-              //\$${product.price.toStringAsFixed(2)}, productPrice
+              Text(product.name, style: AppTextStyles.productName,),
+              Text('\$${product.price.toStringAsFixed(2)}', style: AppTextStyles.productPrice,)
+              //, productPrice
             ],
           ),
         ],

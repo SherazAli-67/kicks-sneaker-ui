@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kicks_sneaker_ui/constants/animation_constant.dart';
 import 'package:kicks_sneaker_ui/constants/number_constant.dart';
 import 'package:kicks_sneaker_ui/constants/string_const.dart';
 import 'package:kicks_sneaker_ui/core/app_colors.dart';
@@ -35,27 +36,11 @@ class HomeScreen extends StatelessWidget {
                         _buildHeader(context),
                         _buildSearchRow(),
                         _buildCategoriesSection(provider),
-                        _buildBanner(),
+                        _buildBanner(context),
                       ],
                     ),
                   ),
-                  SliverPadding(
-                    padding: .only(top: NumberConstant.contentGap, bottom: NumberConstant.bottomNavClearance),
-                    sliver: SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: NumberConstant.productGridGap,
-                        mainAxisSpacing: NumberConstant.productGridGap,
-                        childAspectRatio: NumberConstant.productCardAspectRatio,
-                      ),
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                          final product = provider.filteredProducts[index];
-                          return ProductCard(product: product, onTap: () => context.push(NamedRoutes.productPath(product.id)),);
-                        },
-                        childCount: provider.filteredProducts.length,
-                      ),
-                    ),
-                  ),
+                  _buildProductGrid(context, provider),
                 ],
               ),
             ),
@@ -76,16 +61,15 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: .circular(NumberConstant.profileImageBorderRadius),
                 child: ColoredBox(
                   color: AppColors.neutral200,
-                  //profilePic, widthHeight: profileImageSize, fit.cover
-                  child: const SizedBox()
+                  child: Image.asset(AssetRes.profilePic, width: NumberConstant.profileImageSize, fit: .contain),
                 ),
               ),
               Column(
                 spacing: NumberConstant.tinyGap / 2,
                 crossAxisAlignment: .start,
                 children: [
-                  //${StringConst.helloPrefix}${StringConst.userName}, hello
-                  //goodMorning, greeting
+                  Text('${StringConst.helloPrefix}${StringConst.userName}', style: AppTextStyles.hello),
+                  Text(StringConst.goodMorning, style: AppTextStyles.greeting),
                 ],
               ),
             ],
@@ -94,8 +78,8 @@ class HomeScreen extends StatelessWidget {
         Row(
           spacing: NumberConstant.headerActionsGap,
           children: [
-            //AppIconButton: icNotification,
-            //AppIconButton: icCart,
+            AppIconButton(icon: AssetRes.icNotification),
+            AppIconButton(icon: AssetRes.icCart),
           ],
         ),
       ],
@@ -108,27 +92,24 @@ class HomeScreen extends StatelessWidget {
       children: [
         Expanded(
           child: DecoratedBox(
-            //color: neutral100, searchBorderRadius
-            decoration: BoxDecoration(color: Colors.transparent),
+            decoration: BoxDecoration(color: AppColors.neutral100),
             child: Padding(
-              padding: .symmetric(horizontal: NumberConstant.searchHorizontalPadding, vertical: NumberConstant.searchVerticalPadding,),
+              padding: .symmetric(horizontal: NumberConstant.searchHorizontalPadding, vertical: NumberConstant.searchVerticalPadding),
               child: Row(
                 spacing: NumberConstant.smallGap,
                 children: [
-                  //icSearch
-                  //searchHint, searchHint
+                  SvgPicture.asset(AssetRes.icSearch),
+                  Text(StringConst.searchHint, style: AppTextStyles.searchHint),
                 ],
               ),
             ),
           ),
         ),
         DecoratedBox(
-          //primaryColor
-          decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.searchBorderRadius),),
+          decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: .circular(NumberConstant.searchBorderRadius)),
           child: Padding(
             padding: .all(NumberConstant.filterButtonPadding),
-            //icFilter
-            child: const SizedBox(),
+            child: SvgPicture.asset(AssetRes.icFilter),
           ),
         ),
       ],
@@ -140,7 +121,6 @@ class HomeScreen extends StatelessWidget {
       spacing: NumberConstant.categoriesTitleGap,
       crossAxisAlignment: .start,
       children: [
-        //categories, sectionTitle
         SingleChildScrollView(
           scrollDirection: .horizontal,
           child: Row(
@@ -150,13 +130,24 @@ class HomeScreen extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () => provider.selectCategory(index),
-                child: DecoratedBox(
-                  // isSelected ? AppColors.primaryColor : AppColors.neutral200
-                  decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.chipBorderRadius),),
+                child: AnimatedContainer(
+                  duration: AnimationConstant.selection,
+                  curve: AnimationConstant.selectionCurve,
+                  decoration: BoxDecoration(
+                    color: isSelected ? AppColors.primaryColor : AppColors.neutral200,
+                    borderRadius: .circular(NumberConstant.chipBorderRadius),
+                  ),
                   child: Padding(
-                    padding: .symmetric(horizontal: NumberConstant.categoryChipHorizontalPadding, vertical: NumberConstant.categoryChipVerticalPadding,),
-                    //AppData.categories[index]
-                    child: Text('', style: isSelected ? AppTextStyles.categoryChipSelected : AppTextStyles.categoryChip,),
+                    padding: .symmetric(
+                      horizontal: NumberConstant.categoryChipHorizontalPadding,
+                      vertical: NumberConstant.categoryChipVerticalPadding,
+                    ),
+                    child: AnimatedDefaultTextStyle(
+                      duration: AnimationConstant.selection,
+                      curve: AnimationConstant.selectionCurve,
+                      style: isSelected ? AppTextStyles.categoryChipSelected : AppTextStyles.categoryChip,
+                      child: Text(AppData.categories[index]),
+                    ),
                   ),
                 ),
               );
@@ -167,12 +158,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBanner() {
-    return DecoratedBox(
-      //neutral100
-      decoration: BoxDecoration(color: Colors.transparent, borderRadius: .circular(NumberConstant.buttonBorderRadius),),
+  Widget _buildBanner(BuildContext context) {
+    final banner = DecoratedBox(
+      decoration: BoxDecoration(color: AppColors.neutral100, borderRadius: .circular(NumberConstant.buttonBorderRadius)),
       child: Padding(
-        padding: .symmetric(horizontal: NumberConstant.contentGap, vertical: NumberConstant.smallGap,),
+        padding: .symmetric(horizontal: NumberConstant.contentGap, vertical: NumberConstant.smallGap),
         child: Row(
           spacing: NumberConstant.contentGap,
           children: [
@@ -185,32 +175,105 @@ class HomeScreen extends StatelessWidget {
                     spacing: NumberConstant.tinyGap,
                     crossAxisAlignment: .start,
                     children: [
-                      //newCollection, bannerTitle,
-                      //discountBanner, bannerSubtitle
+                      Text(StringConst.newCollection, style: AppTextStyles.bannerTitle),
+                      Text(StringConst.discountBanner, style: AppTextStyles.bannerSubtitle),
                     ],
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
-                      //neutral100
-                      color: Colors.transparent,
+                      color: AppColors.neutral100,
                       borderRadius: .circular(NumberConstant.chipBorderRadius),
-                      //neutral400
-                      border: .all(color: Colors.transparent),
+                      border: .all(color: AppColors.neutral400),
                     ),
                     child: Padding(
-                      padding: .symmetric(horizontal: NumberConstant.shopNowHorizontalPadding, vertical: NumberConstant.shopNowVerticalPadding,),
-                      //shopNow, shopNow
-                      child: const SizedBox()
+                      padding: .symmetric(
+                        horizontal: NumberConstant.shopNowHorizontalPadding,
+                        vertical: NumberConstant.shopNowVerticalPadding,
+                      ),
+                      child: Text(StringConst.shopNow, style: AppTextStyles.shopNow),
                     ),
                   ),
                 ],
               ),
             ),
-            //newCollectionImg, fit.contain
-            Expanded(child: AspectRatio(aspectRatio: 1, child: const SizedBox()),),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(AssetRes.newCollectionImg, fit: .contain),
+              ),
+            ),
           ],
         ),
       ),
+    );
+
+    if (MediaQuery.disableAnimationsOf(context)) return banner;
+
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: AnimationConstant.entrance,
+      curve: AnimationConstant.entranceCurve,
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Transform.translate(
+            offset: Offset(0, AnimationConstant.entranceSlideOffset * (1 - value)),
+            child: child,
+          ),
+        );
+      },
+      child: banner,
+    );
+  }
+
+  Widget _buildProductGrid(BuildContext context, HomeProvider provider) {
+    final products = provider.filteredProducts;
+    final categoryIndex = provider.selectedCategoryIndex;
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+
+    return SliverPadding(
+      padding: .only(top: NumberConstant.contentGap, bottom: NumberConstant.bottomNavClearance),
+      sliver: products.isEmpty
+          ? const SliverToBoxAdapter(child: SizedBox.shrink())
+          : SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: NumberConstant.productGridGap,
+                mainAxisSpacing: NumberConstant.productGridGap,
+                childAspectRatio: NumberConstant.productCardAspectRatio,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final product = products[index];
+                  final card = ProductCard(
+                    product: product,
+                    onTap: () => context.push(NamedRoutes.productPath(product.id)),
+                  );
+
+                  if (reduceMotion) return card;
+
+                  final staggerStart = (index * AnimationConstant.staggerStep).clamp(0.0, AnimationConstant.staggerMaxStart);
+
+                  return TweenAnimationBuilder<double>(
+                    key: ValueKey('grid-$categoryIndex-${product.id}'),
+                    tween: Tween(begin: 0, end: 1),
+                    duration: AnimationConstant.gridItem,
+                    curve: Interval(staggerStart, 1, curve: AnimationConstant.gridCurve),
+                    builder: (context, value, child) {
+                      return Opacity(
+                        opacity: value,
+                        child: Transform.translate(
+                          offset: Offset(0, AnimationConstant.gridSlideOffset * (1 - value)),
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: card,
+                  );
+                },
+                childCount: products.length,
+              ),
+            ),
     );
   }
 }
